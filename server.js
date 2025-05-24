@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const cors = require('cors');
+const path = require('path');
 
 const app = express();
 const port = process.env.PORT || 3001;
@@ -9,6 +10,8 @@ const port = process.env.PORT || 3001;
 // Middleware
 app.use(express.json());
 app.use(cors());
+// Serve .well-known directory statically
+app.use('/.well-known', express.static(path.join(__dirname, '.well-known')));
 
 // Routes
 app.post('/create-payment-intent', async (req, res) => {
