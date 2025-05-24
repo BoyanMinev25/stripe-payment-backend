@@ -46,5 +46,5 @@ app.get('/', (req, res) => {
 // Start server
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
-  console.log(`Stripe payment endpoint available at: http://localhost:${port}/create-payment-intent`);
+  console.log(`Stripe payment endpoint available at: https://stripe-payment-backend-h99h.onrender.com/`);
 }); 
