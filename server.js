@@ -57,7 +57,7 @@ app.post('/create-payment-intent', async (req, res) => {
       amount,
       currency,
       customer: customer.id,
-      payment_method_types: ['card', 'apple_pay'], // Explicitly include Apple Pay
+      payment_method_types: ['card'], // Temporarily disable Apple Pay until it's properly configured
       metadata: {
         app: 'iris-health-guide'
       },
@@ -122,8 +122,8 @@ app.post('/webhook', express.raw({ type: 'application/json' }), async (req, res)
 app.get('/', (req, res) => {
   res.json({ 
     status: 'Stripe payment server is running',
-    version: '1.1.0',
-    features: ['apple_pay', 'card_payments', 'customer_management']
+    version: '1.1.1',
+    features: ['card_payments', 'customer_management'] // Apple Pay temporarily disabled
   });
 });
 
@@ -154,5 +154,5 @@ app.get('/apple-pay-check', async (req, res) => {
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
   console.log(`Stripe payment endpoint available at: https://stripe-payment-backend-h99h.onrender.com/`);
-  console.log('Apple Pay support: Enabled');
+  console.log('Apple Pay support: Temporarily disabled (enable in Stripe Dashboard first)');
 }); 
